@@ -17,43 +17,59 @@ O sistema funciona no navegador e utiliza `localStorage` para salvar os dados lo
 
 ## Estrutura de pastas
 
+A organização foi simplificada para separar os arquivos de configuração da aplicação. A raiz do projeto fica apenas com documentação e Docker, enquanto o código da interface fica dentro de `public/`.
+
 ```text
 Sistema-Financeiro/
-|-- index.html
-|-- app.js
-|-- styles.css
+|-- README.md
 |-- Dockerfile
 |-- docker-compose.yml
-|-- public/
-|   `-- index.html
-`-- src/
-    |-- css/
-    |   `-- styles.css
-    `-- js/
-        |-- app.js
-        |-- app-standalone.js
-        |-- storage.js
-        `-- transactions.js
+`-- public/
+    |-- index.html
+    `-- assets/
+        |-- css/
+        |   `-- styles.css
+        `-- js/
+            |-- app.js
+            |-- storage.js
+            `-- transactions.js
 ```
 
-### Principais arquivos
+### Organização dos arquivos
 
-- `index.html`: página principal da aplicação;
-- `src/css/styles.css`: estilos visuais da interface;
-- `src/js/app.js`: controle da interface, eventos, abas, renderização e integração das funcionalidades;
-- `src/js/app-standalone.js`: versão do JavaScript usada diretamente pelo `index.html`;
-- `src/js/transactions.js`: funções relacionadas às movimentações, cálculos, filtros e formatação de valores;
-- `src/js/storage.js`: leitura e gravação das movimentações no `localStorage`;
-- `Dockerfile`: configuração para servir o projeto com Nginx;
-- `docker-compose.yml`: configuração para executar o projeto com Docker Compose.
+- `public/index.html`: página principal renderizada no navegador;
+- `public/assets/css/styles.css`: estilos visuais da aplicação;
+- `public/assets/js/app.js`: controle da interface, eventos, abas, formulários, filtros e renderização;
+- `public/assets/js/transactions.js`: regras de movimentações, cálculos, filtros, categorias e formatação de valores;
+- `public/assets/js/storage.js`: leitura e gravação dos dados no `localStorage`;
+- `Dockerfile`: configuração para publicar a pasta `public/` com Nginx;
+- `docker-compose.yml`: configuração para subir o container na porta `8080`.
 
 ## Como executar
 
 ### Execução local
 
-1. Abra a pasta do projeto;
-2. Abra o arquivo `index.html` no navegador;
-3. Como alternativa, use uma extensão como Live Server no VS Code.
+Como o projeto usa módulos JavaScript, o ideal é executar com um servidor local.
+
+Opção com Live Server:
+
+1. Abra a pasta do projeto no VS Code;
+2. Instale ou habilite a extensão Live Server;
+3. Clique com o botão direito em `public/index.html`;
+4. Selecione `Open with Live Server`.
+
+Opção com Python:
+
+```bash
+cd public
+python -m http.server 8080
+```
+
+Depois acesse:
+
+```text
+http://localhost:8080
+```
 
 ### Execução com Docker
 

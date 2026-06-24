@@ -1,4 +1,13 @@
-import { INITIAL_TRANSACTIONS, createTransaction, filterTransactions, formatCurrency, getCategoryOptions, getCategoryTotals, getSummaries, sortTransactions } from './transactions.js';
+import {
+  INITIAL_TRANSACTIONS,
+  createTransaction,
+  filterTransactions,
+  formatCurrency,
+  getCategoryOptions,
+  getCategoryTotals,
+  getSummaries,
+  sortTransactions
+} from './transactions.js';
 import { loadTransactions, saveTransactions } from './storage.js';
 
 const transactionForm = document.getElementById('transaction-form');
@@ -93,7 +102,7 @@ function renderSummary() {
   expenseEl.textContent = formatCurrency(expense);
   totalCountEl.textContent = transactions.length;
   const topCategory = getCategoryTotals(transactions)[0];
-  topCategoryEl.textContent = topCategory ? topCategory.name : '—';
+  topCategoryEl.textContent = topCategory ? topCategory.name : '-';
 }
 
 function renderRecent() {
@@ -124,7 +133,7 @@ function renderItems(container, items) {
         <li class="transaction-item">
           <div class="transaction-main">
             <strong>${item.description}</strong>
-            <span class="transaction-meta">${item.category}${item.note ? ` • ${item.note}` : ''} • ${new Date(item.date).toLocaleDateString('pt-BR')}</span>
+            <span class="transaction-meta">${item.category}${item.note ? ` - ${item.note}` : ''} - ${new Date(item.date).toLocaleDateString('pt-BR')}</span>
           </div>
           <div class="transaction-main">
             <span class="amount-badge ${item.type === 'income' ? 'income' : 'expense'}">${item.type === 'income' ? '+' : '-'}${formatCurrency(Number(item.amount))}</span>
