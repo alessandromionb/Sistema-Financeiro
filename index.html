@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema Financeiro MVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">MVP</p>
+          <h1>Sistema Financeiro</h1>
+        </div>
+        <div class="topbar-pill">Controle de entradas e saídas</div>
+      </header>
+
+      <nav class="tabs" aria-label="Navegação principal">
+        <button class="tab active" data-target="summary">Resumo</button>
+        <button class="tab" data-target="record">Registrar</button>
+        <button class="tab" data-target="history">Histórico</button>
+      </nav>
+
+      <main>
+        <section id="summary" class="panel active">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Visão geral</p>
+              <h2>Resumo financeiro</h2>
+            </div>
+          </div>
+
+          <div class="summary-grid">
+            <article class="card highlight">
+              <span>Saldo total</span>
+              <strong id="balance">R$ 0,00</strong>
+            </article>
+            <article class="card income">
+              <span>Receitas</span>
+              <strong id="income">R$ 0,00</strong>
+            </article>
+            <article class="card expense">
+              <span>Despesas</span>
+              <strong id="expense">R$ 0,00</strong>
+            </article>
+          </div>
+
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Últimas movimentações</p>
+              <h3>Movimentações recentes</h3>
+            </div>
+          </div>
+          <ul id="recent-list" class="transaction-list"></ul>
+        </section>
+
+        <section id="record" class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Fluxo principal</p>
+              <h2>Registrar movimentação</h2>
+            </div>
+          </div>
+
+          <form id="transaction-form" class="form-card">
+            <label>
+              Descrição
+              <input type="text" id="description" name="description" placeholder="Ex.: Salário" required />
+            </label>
+            <label>
+              Valor
+              <input type="number" id="amount" name="amount" step="0.01" min="0.01" required />
+            </label>
+            <label>
+              Tipo
+              <select id="type" name="type" required>
+                <option value="income">Receita</option>
+                <option value="expense">Despesa</option>
+              </select>
+            </label>
+            <label>
+              Categoria
+              <input type="text" id="category" name="category" placeholder="Ex.: Trabalho" required />
+            </label>
+            <label>
+              Data
+              <input type="date" id="date" name="date" required />
+            </label>
+            <button type="submit">Salvar movimentação</button>
+          </form>
+        </section>
+
+        <section id="history" class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Histórico</p>
+              <h2>Movimentações cadastradas</h2>
+            </div>
+          </div>
+          <ul id="history-list" class="transaction-list"></ul>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
